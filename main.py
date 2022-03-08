@@ -1,13 +1,21 @@
 from datastore import DataStore
 from interface import UI
+from titlewindow import TitleWindow
+import sys
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QMainWindow
 db = DataStore()
-ui = UI()
+ui = TitleWindow()
 running = True
 
 while running:
-    option = ui.main_menu()
-
+    if __name__ == '__main__':
+        app = QApplication(sys.argv)
+        main_win = TitleWindow()
+        main_win.show()
+        sys.exit(app.exec())
     # 1 Queries
+    '''
     if option == "1":
         queries = True
         while queries:
@@ -63,9 +71,17 @@ while running:
             elif update == "Q":
                 print("\n")
                 updates = False
+    '''
+    def signals(self):
+        self.ui.query_menu_button.clicked.connect()
+        self.ui.update_database_menu_button.clicked.connect()
+        self.ui.exit_button.clicked.connect(self.exit())
 
-    elif option == "X":
-        running = False
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    main_win = TitleWindow()
+    main_win.show()
+    sys.exit(app.exec())
 
 
             
